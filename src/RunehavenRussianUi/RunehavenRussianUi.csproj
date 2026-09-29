@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AssemblyName>RunehavenRussianUi</AssemblyName>
+    <RestoreIgnoreFailedSources>true</RestoreIgnoreFailedSources>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BepInEx.Core"><HintPath>E:\SteamLibrary\steamapps\common\Runehaven\BepInEx\core\BepInEx.Core.dll</HintPath></Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP"><HintPath>E:\SteamLibrary\steamapps\common\Runehaven\BepInEx\core\BepInEx.Unity.IL2CPP.dll</HintPath></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>E:\SteamLibrary\steamapps\common\Runehaven\BepInEx\core\Il2CppInterop.Runtime.dll</HintPath></Reference>
+    <Reference Include="Il2Cppmscorlib"><HintPath>E:\SteamLibrary\steamapps\common\Runehaven\BepInEx\interop\Il2Cppmscorlib.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>E:\SteamLibrary\steamapps\common\Runehaven\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>E:\SteamLibrary\steamapps\common\Runehaven\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>E:\SteamLibrary\steamapps\common\Runehaven\BepInEx\interop\UnityEngine.UI.dll</HintPath></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>E:\SteamLibrary\steamapps\common\Runehaven\BepInEx\interop\Unity.TextMeshPro.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>
