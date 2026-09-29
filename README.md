@@ -20,20 +20,14 @@
 1. Полностью закройте Runehaven.
 2. Установите BepInEx 6 для Unity IL2CPP в папку игры. Без него будет работать только контентный перевод, а интерфейс останется на английском.
 3. Скачайте последнюю версию русификатора в разделе [Releases](https://github.com/BrownCattail/Runehaven-Russian-UI/releases) и распакуйте архив.
-4. Запустите PowerShell в распакованной папке и выполните:
-
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-& '.\Install-Runehaven-RU.ps1' -GamePath 'E:\SteamLibrary\steamapps\common\Runehaven'
-```
-
-Если игра расположена в другом месте, замените путь после `-GamePath`.
-
-5. Запустите игру.
+4. Запустите двойным щелчком `Install-Runehaven-RU.bat`.
+5. Если игра не найдена автоматически, вставьте путь к папке Runehaven. Например: `E:\SteamLibrary\steamapps\common\Runehaven`.
+6. Дождитесь сообщения об успешной установке и запустите игру.
 
 ## Содержимое репозитория
 
-- `releases/Runehaven_RU_0.1.11.zip` — готовый пакет русификатора;
+- `releases/Runehaven_RU_x.x.x.zip` — готовый пакет русификатора;
+- `Install-Runehaven-RU.bat` — простой установщик для запуска двойным щелчком;
 - `Install-Runehaven-RU.ps1` — установщик контентного мода и DLL;
 - `translations.json` — переводы файлов сценариев;
 - `src/RunehavenRussianUi` — исходный код UI-плагина.
