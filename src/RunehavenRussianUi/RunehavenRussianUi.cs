@@ -532,10 +532,21 @@ public sealed class UiTranslator : MonoBehaviour
             return whole;
 
         var result = source;
+
+        // Merchant offers are generated from an item title plus a price, for
+        // example "Iron helmet: 12 coins". Reuse the complete item dictionary
+        // here, rather than maintaining a fragile list for each shop table.
+        if (source.Contains("coins", StringComparison.OrdinalIgnoreCase) ||
+            source.StartsWith("Bought ", StringComparison.OrdinalIgnoreCase))
+        {
+            foreach (var replacement in Translations)
+                result = result.Replace(replacement.Key, replacement.Value, StringComparison.OrdinalIgnoreCase);
+        }
+
         foreach (var replacement in Fragments)
             result = result.Replace(replacement.Key, replacement.Value, StringComparison.Ordinal);
         foreach (var replacement in MerchantItemFragments)
-            result = result.Replace(replacement.Key, replacement.Value, StringComparison.Ordinal);
+            result = result.Replace(replacement.Key, replacement.Value, StringComparison.OrdinalIgnoreCase);
         return result;
     }
 
