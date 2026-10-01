@@ -10,7 +10,7 @@ using UguiText = UnityEngine.UI.Text;
 
 namespace RunehavenRussianUi;
 
-[BepInPlugin("ru.runehaven.localization", "Runehaven Russian UI", "0.1.0")]
+[BepInPlugin("ru.runehaven.localization", "Runehaven Russian UI", "0.1.13")]
 public sealed class Plugin : BasePlugin
 {
     public override void Load()
@@ -171,6 +171,11 @@ public sealed class UiTranslator : MonoBehaviour
         ["Amulet of protection"] = "Амулет защиты",
         ["Merchant"] = "Торговец",
         ["Blacksmith"] = "Кузнец",
+        ["Talk"] = "Поговорить",
+        ["Greetings!\nHave a look at my wares, you might find something of interest.."] = "Приветствую!\nВзгляните на мои товары — вдруг найдётся что-нибудь интересное.",
+        ["I am the blacksmith of this village...\nTake a look around."] = "Я кузнец этой деревни...\nОсмотритесь.",
+        ["Greetings traveller!\nHave a look at my wares, you might find something that suits you.."] = "Приветствую, путник!\nВзгляните на мои товары — возможно, найдётся что-то подходящее.",
+        ["Greetings traveller!\nLet me show you my wares."] = "Приветствую, путник!\nПозвольте показать вам мои товары.",
         ["Scroll of fire missile"] = "Свиток огненного снаряда",
         ["Scroll of magic missile"] = "Свиток магического снаряда",
         ["Scroll of air missile"] = "Свиток воздушного снаряда",
@@ -333,6 +338,11 @@ public sealed class UiTranslator : MonoBehaviour
 
     private static readonly KeyValuePair<string, string>[] Fragments =
     {
+        new("Coins:", "Монеты:"),
+        new(" coins", " мон."),
+        new("Bought ", "Куплено: "),
+        new("You need ", "Нужно ещё "),
+        new(" more coins to buy that", " монет, чтобы купить это."),
         new("Critical chance:", "Шанс крит. удара:"),
         new("Critical damage:", "Критический урон:"),
         new("Fire damage:", "Урон огнём:"),
@@ -416,6 +426,42 @@ public sealed class UiTranslator : MonoBehaviour
         new("Fullscreen", "Полный экран"),
     };
 
+    // Store entries include prices or quantities, so their text does not exactly
+    // match an item title in the dictionary above. These fragments cover every
+    // item type sold by the game's merchants, including randomized stock.
+    private static readonly KeyValuePair<string, string>[] MerchantItemFragments =
+    {
+        new("Glue bomb", "Клеевая бомба"),
+        new("Dragonroot", "Корень дракона"),
+        new("Identify scroll", "Свиток опознания"),
+        new("Vial of sage", "Флакон шалфея"),
+        new("Flask of arnica", "Фляга арники"),
+        new("Aloe vera", "Алоэ вера"),
+        new("Foxglove", "Наперстянка"),
+        new("Iron chestplate", "Железная кираса"),
+        new("Iron greaves", "Железные поножи"),
+        new("Iron helmet", "Железный шлем"),
+        new("Bronze chestplate", "Бронзовая кираса"),
+        new("Ring of life", "Кольцо жизни"),
+        new("Silver rod", "Серебряный жезл"),
+        new("Horseman's pick", "Конная кирка"),
+        new("Longsword", "Длинный меч"),
+        new("Khopesh", "Хопеш"),
+        new("Partisan", "Партизан"),
+        new("Arcuballista", "Аркбаллиста"),
+        new("Shortbow", "Короткий лук"),
+        new("Longbow", "Длинный лук"),
+        new("Cheirosiphon", "Хейросифон"),
+        new("Pickaxe", "Кирка"),
+        new("Dagger", "Кинжал"),
+        new("Trident", "Трезубец"),
+        new("Glaive", "Глефа"),
+        new("Bomb", "Бомба"),
+        new("Bolts", "Болты"),
+        new("Arrows", "Стрелы"),
+        new("Torch", "Факел"),
+    };
+
     private readonly HashSet<string> _reported = new(StringComparer.Ordinal);
     private float _nextScanTime;
     private string _untranslatedFile;
@@ -487,6 +533,8 @@ public sealed class UiTranslator : MonoBehaviour
 
         var result = source;
         foreach (var replacement in Fragments)
+            result = result.Replace(replacement.Key, replacement.Value, StringComparison.Ordinal);
+        foreach (var replacement in MerchantItemFragments)
             result = result.Replace(replacement.Key, replacement.Value, StringComparison.Ordinal);
         return result;
     }
